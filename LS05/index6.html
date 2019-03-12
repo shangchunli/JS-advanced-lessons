@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+<script>
+	//&&  全真则真
+	//|| 全假则假
+
+	//短路原则
+	//&& 左操作数为true 返回右操作数 为false 返回左操作数
+	//|| 左操作数是true 返回左操作数 为false 返回右操作数
+	console.log(20&&0);//0
+	console.log(null&&10);//null
+
+	console.log({x:2}&&{name:"Jack"});//返回后一个。对象为真
+	console.log({}||"world");//返回第一个，空对象也为真
+
+	//根据上述短路原则
+	var score=80;
+	console.log((score>90&&'优')||(score>75&&'良')||(score>60&&'及格')||'不及格');//良
+
+	//switch和case做的是全等的判断，值和类型必须都相等
+	switch(true){
+		case score>90:
+			console.log('优');
+			break;
+		case score>75:
+			console.log('良');
+			break;
+		case score>60:
+		 	console.log('及格');
+		 	break;
+		default:
+			console.log('不及格');
+	}
+
+
+	//定义函数的形参和调用函数的实参个数可以不一致
+	//缺点，如果实参传入的是false，操作的的话就取了右操作数，结果出错
+	function sum(a,b,c) {
+		// body...
+		b=b||4;//当实参没有传入时，默认右侧操作数为真值
+		c=c||5;
+		return a+b+c;
+	}
+	console.log(sum(1,2,3));//1+2+3
+	console.log(sum(1,2));//1+2+5
+	console.log(sum(1));//1+4+5
+
+	//实参转化为布尔类型时不是false，结果就不会出错
+	function sum1(a,b,c){
+		if(b!=false){
+			b=b||4;
+		}
+		if(c!=false){
+			c=c||5;
+		}
+		return a+b+c;
+	}
+
+	//ES6中设置函数默认值
+	function sum2(x,y=2,z=3){
+		return x+y+z;
+	}
+	console.log(sum2(1));
+</script>
+</body>
+</html>

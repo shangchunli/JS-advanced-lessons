@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+	//发反写  数值和变量兑换位置,不容易出现把判等写为赋值的情况
+	var a=34;
+	if(45==a){
+		console.log('hi');
+	}
+
+	var a1=20;
+	var a2="20";
+	//隐式类型转换
+	if(a1==a2){
+		console.log("world");
+	}
+
+	//===   先判断类型，在判断值
+	if(a1===a2){
+		console.log('hello');
+	}
+
+	//算数运算符
+
+	"5"-2;//结果是Number类型
+	1+{};//是一个拼接的过程 结果是一个字符串 "1[object Object]"
+
+	//++x先进行运算再输出
+	//x++先输出再运算
+	var x="1";
+	console.log(++x);
+
+	var x="1";
+	console.log(x+=1);//字符串的拼接
+
+	console.log({}==={});//false对象判断的是地址
+	console.log(NaN===NaN)//false
+
+	//!=
+	//!==先判断类型
+
+	console.log(3==new String(3));//true
+	console.log(3===new String(3));//false
+
+	var obj1=new String('abc');
+	var obj2=new String('abc');
+	console.log('abc'==obj1);//true	
+</script>
+</body>
+</html>

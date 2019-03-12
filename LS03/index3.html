@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+	
+
+	(345.67)toFixed(1)//保留特定的位数
+	
+	var num1=11.26;
+	var numobj2=new Number(num1);
+	console.log(numobj2);
+
+	//toString将数字转化为字符串
+	var n1=12345.678;
+	console.log(n1.toString(2));
+	console.log(n1.toPrecision(2));//保留几位的形式
+	console.log(n1.toPrecision(4));
+
+	var str1="abcde";
+	var str1obj=new String(str1);
+	console.log(str1obj);
+	console.log(str1obj.charAt(2));//返回特定索引位置的字符
+
+	console.log("A".localeCompare("B"));//比较两个字母的前后顺序
+
+	//基本数据类型变量的__proto__属性和变量的构造函数的protoType相同
+	//num.__proto__==Number.prototype
+	var num2=20;
+	console.log(num2.__proto__);
+	console.log(Number.prototype);
+	
+	var str2="abcdefgh";
+	//返回特定位置的字符
+	str2.charAt(1);
+	//返回特定索引位置的字符的Unicode码
+	str2.charCodeAt(0);
+
+	str2.slice(0, 3);//slice(截取起始位置，截取的结束位置)
+	str2.slice(1,-1);
+
+
+	str2.substr(0,3);//(截取起始位置，截取的长度)
+	str2.substr(0,-1);//结果是""
+
+
+	//substring(截取的起始位置，截取的结束位置)
+	//起始值>结束值  互换位置
+	//如果有超出索引位置0-str.length-1 自动截取
+	str2.substring(0,3);//第二个数字可选，(3,0)和(0,3)结果一样 如果前数字<后，那么前后数字兑换
+	str2.substring(-1,3);//从0开始
+
+	//split(特定的字符,限定元素个数)将字符串一特定的字符分割，生成数组元素。
+	var str3="abc*de*fg";
+	str3.split("*");//转化为数组形式
+	str3.split("*",2)//后面数字是返回的元素个数，是可选的
+
+	//trim()去除字符串两边的空白字符，字符串内部的不去掉
+	str4="		gdf		a 	";
+	str4.trim();//将两边的空格去掉
+
+	var str5="hello";
+	str5.concat("","world");//拼接
+
+	str5.indexof("d",1);//索引，从哪开始查找
+
+	//Boolean进阶
+	Boolean(new Boolean(null));//true 这是对象
+	Boolean(null);//false
+</script>
+</body>
+</html>

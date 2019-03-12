@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+	//字面量，即后面的数值
+	//表达式
+	//ES ECMAScript简写，是一个语言标准  
+	//ES5、ES6是ES两个主流的版本
+	//ES5没有块级作用域
+	if(true){
+		var a=1;
+	}
+	a=2;
+	console.log(a);//2
+	if(false){
+		var a=1;
+	}
+	console.log(a);//undefined原因是false不执行，没有声明变量
+
+	for(var i=0;i<3;i++){
+
+	}
+	console.log(i);//2,全局变量，没有块级作用域循环结束输出最后一个
+
+
+	//对当前页面的所有JavaScript都使用严格模式
+	'use strict'
+	function fn1() {
+		//对函数内部代码应用严格模式
+		'use strict'
+	}
+
+	//如果变量不使用var关键字声明，会自动提升 为全局变量 这是一个缺陷
+	function fn2 () {
+		// body...
+		username="zhangsan";
+	}
+	fn2();
+	console.log(username);//zhangsan
+	//如何解决，可以用严格模式
+	//严格模式下，变量必须使用var声明
+	function fn2 () {
+		// body...
+		'use strict'
+		username="zhangsan";
+	}
+	fn2();
+	console.log(username);//报错，必须使用var声明
+
+
+	function fn3(){
+		//非严格模式下 普通函数的内部this指向window对象
+		//严格模式下，this指向undefined
+		'use strict'
+		console.log(this);//指向window对象
+	}
+	fn3();
+
+
+	function fn3(){
+		//严格模式下，this指向undefined
+		'use strict'
+		console.log(this);//undefined
+	}
+	fn3();
+
+
+	function fn4(){
+		var result=(this===undefined?true:false);
+		return result;
+	}
+	console.log(fn4());//false
+
+	function fn4(){
+		'use strict'
+		var result=(this===undefined?true:false);
+		return result;
+	}
+	console.log(fn4());//true
+	
+
+	var str="abcdef";
+	str.length=1;//临时对象赋值后就释放掉了
+	console.log(str.length);//6
+
+
+	'use strict'//严格模式下报错
+	var str="abcdef";
+	//字符串的length属性是只读的
+	str.length=1;//临时对象赋值后就释放掉了
+	console.log(str.length);//报错
+
+
+	//switch case是进行值和类型的判断，不会发生隐式类型的转换
+	//case后面可以是表达式
+	//可以设置default
+	//没有break，会执行所有的case语句（语句的穿透性）
+	var index=1;
+	switch(index){
+		case 1:
+			console.log('星期一');
+			break;
+		case 2:
+			console.log('星期二');
+			break;
+		default:
+			console.log('不符合');
+			break;
+	}
+
+
+	switch(index){
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+			console.log('工作日');
+			break;
+		case 6:
+		case 7:
+			console.log('休息日');
+			break;
+		default:
+			console.log('不符合');
+			break;
+	}
+
+	var obj1={'username':'zhangsan','age':20};
+	for(var i in obj1){
+		console.log(i,obj1[i]);//i为索引属性
+	}
+	//不推荐使用for in遍历数组
+	var arr=[1, ,2,3];
+	for(var i in arr){
+    	console.log(i,arr[i]);
+	}
+	//0 1
+	//2 2
+	//3 3
+</script>
+</body>
+</html>
