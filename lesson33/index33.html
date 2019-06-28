@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script>
+//迭代器：新的遍历数组的方式
+	function createIterator(arr){
+		var i=0;
+		return {
+			next:function(){
+				return i<arr.length?{value:arr[i++],done:true}:
+				{value:undefined,done:false};
+			}
+		}
+	}
+	var iterator=createIterator([1,2,3]);
+	console.log(iterator.next());//value:1 done:true
+	console.log(iterator.next());//value:2 done:true
+	console.log(iterator.next());//value:3 done:true
+	console.log(iterator.next());//value:undefined done:false
+
+
+
+
+	let arr1=[1,2,3,4,6];
+	for(let i of arr1){
+		console.log(arr1[i]);
+	}
+
+
+	let map=new Map([1,2,3]);
+
+	/*argument*/
+
+	/*判断数据结构能否被遍历器遍历
+		不能直接针对对象应用遍历器
+		Array,Map,Set,String,TypedArray,函数的，
+	*/
+
+	let arr2=[1,2,3];
+	let person={"name":"lisi","age":24};
+	console.log(arr2[Symbol,iterator]);
+
+	//生成器
+	function* helloGenerator(){
+		yield "hello";
+		yield "world";
+		return "ending";
+	}
+	var iterator=helloGenerator();
+	console.log(iterator.next());
+	console.log(iterator.next());
+	console.log(iterator.next());
+	console.log(iterator.next());
+
+
+	let obj={};
+	obj[Symbol.iterator]=function* (){
+		yield 1;
+		yield 2;
+		yield 3;
+	}
+	for(let i of obj){
+		console.log(i);//1 2 3
+	}
+
+
+	let str="abcdef";
+	for(let i of str){
+		console.log(i);//a b c d e f
+	}
+	
+</script>
+</html>

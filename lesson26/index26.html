@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+//同步：只能前面执行完才可以执行后面【顺序执行】
+//异步：营业厅取号，中间做什么都可以，最后只要叫号的时候办理即可
+	for(var i=0;i<100;i++){
+
+	}
+	console.log("同步执行");
+
+	setTimeout(function(){
+		console.log("异步执行");
+	},2000)
+
+	console.log("主程序");
+
+
+	/*异步：不会阻塞主线程的执行，在满足特定条件时会反馈到主线程*/
+	window.onload=function(){
+		console.log("页面加载完成");
+	}
+	console.log("主线程");
+
+	var i=0;
+	var intervalId=setInterval(function(){
+		console.log(i++);
+	},3000)
+
+	/*ajax可以以异步的方式实现前后端数据的交互*/
+	/*前端通过发起ajax请求的方式，来获取服务器数据*/
+	/*请求方式有get请求和post请求*/
+	$.get("/.server.php",function(res)){
+		$("body").html(res);
+	}
+</script>
+</html>

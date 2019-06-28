@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+	/*
+		javaScript是基于对象的继承方式
+	*/
+	var obj={
+		num:1,
+		str:'hi',
+		sayHi:function(){
+			console.log(this.str);
+		}
+	};
+
+	var newObj=Object.create(obj);
+	console.log(newObj.__proto__==obj);
+	console.log(newObj.num);//1
+	newObj.sayHi();
+
+/*
+构造函数才会有prototype
+obj.__proto__==Object.prototype  Object.prototype.__proto__==null
+*/
+	var obj={z:3};
+	console.log(obj.__proto__==Object.prototype);//true
+	console.log(obj.__proto__.__proto__)//null
+
+
+	function Person(username,age){
+		this.username=username;
+		this.age=age;
+	}
+	//定义这一个方法，可以使多个指向此构造函数原型的对象可以共用这一方法，节省空间
+	Person.prototype.sayHi=function(){
+		console.log(this.username);
+	}
+
+	var person=new Person("zhangsan",29);
+	var person2=new Person("lisi",20);
+	console.log(person.__proto__==person2.__proto__);//均指向Person.prototype
+	console.log(person.__proto__==Person.prototype);
+	//person和person2公用sayHi方法，节省内存空间
+	person.sayHi();
+	person2.sayHi();
+
+	/*
+	Person.prototype==person.__proto__
+	Person.prototype.constructor==Person
+	Person.prototype.__proto__==Object.prototype
+	Object.prototype.constructor==Object
+	Object.prototype.__proto__==null
+	*/
+	console.log(Person.prototype.constructor);
+
+
+	//定义一个车（car）的对象，height，width，weight
+	//创建一个小轿车(smallCar)的对象，继承车相关的属性，自己具有
+	//color seatNum
+	//create方法，以及构造函数的方式
+
+	var car={
+		height:150,
+		width:200,
+		weight:2000
+	};
+	var smallCar=Object.create(car);
+	smallCar.color='red';
+	smallCar.seatNum=5;
+
+	function createSmallCar(color,seatNum){
+		this.color=color;
+		this.seatNum=seatNum;
+	}
+
+	createSmallCar.prototype=car;
+	console.log(car);
+
+	var smallCar=new createSmallCar('blue',4)
+
+	// function Car(height,wdith,weight){
+	// 	this.height=height;
+	// 	this.width=width;
+	// 	this.weight=weight;
+	// }
+	// Car.prototype.set=function(color,num){
+	// 	this.color=color;
+	// 	this.seatNum=num;
+	// }
+
+	// var smallCar=new Car(100,250,1500);
+
+</script>
+</body>
+</html>

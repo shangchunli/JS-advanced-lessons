@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+	/*div{
+		background-color: gray;
+		margin-top: 10px; 
+	}*/
+	#container{
+		height: 400px;
+		width: 1000px;
+		margin:0 auto;
+		border:1px solid red;
+	}
+	img{
+		width: 150px;
+	}
+	#btnlist{
+		width: 1000px;
+		margin: 0 auto
+	}
+
+	.imgborder{
+		border:5px solid red;
+	}
+	:hover .bg{
+		border:5px solid green;
+	}
+
+	div{
+		width: 300px;
+		height: 320px;
+		background: red;
+	}
+	</style>
+</head>
+<body>
+<!-- 登录验证 -->
+
+	<!-- <table>
+		<tr>
+			<td>用户名：</td>
+			<td><input type="text" name="username" id="username"><span class="error"></span></td>
+		</tr>
+		<tr>
+			<td>密码：</td>
+			<td><input type="password" name="pwd"></td>
+		</tr>
+		<tr>
+			<td colspan="2"></td>
+			<td><input type="button" value="登录"/></td>
+		</tr>
+	</table>
+ -->
+<!-- 	<br/>
+ -->
+
+<!-- <br/>
+	<input type="text"/>
+	<input type="file"/>
+	<input type="button"  value="绑定点击事件" id="btn1" />
+	<input type="button"  value="绑定点击事件" id="btn2" />
+	<input type="button"  value="绑定点击事件" id="btn3" />
+
+	<input type="submit"/>
+	<input type="checkbox"/>
+
+	<br/> -->
+
+<!-- 	<img src="bizhi.jpg" width="500" height="500">
+ --><!-- 	<img src="bizhi.jpg" width="500" height="500">
+	<img src="bizhi.jpg" width="500" height="500">
+ -->
+	<!-- <br/>
+
+	<div>层1</div>
+	<div>层2</div>
+	<div>层3</div>
+	<br/>
+ -->
+
+	<!-- <table id="tb1" width="400" height="400" border="1" align="center">
+		<tr class="even">
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr class="odd">
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr class="even">
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+
+	<br/>
+	<table width="400" height="400" border="1" align="center">
+		<tr class="even">
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr class="odd">
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr class="even">
+			<td id="td1"></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+
+	<br/>
+ -->
+
+	<!-- <div id="container">
+		<img src="bizhi.jpg" id='img1'>
+	</div>
+	<div id="btnlist">
+		<button id="after">after</button>
+		<button id='insertafter'>insertafter</button>
+		<button id='before'>before</button>
+	</div> -->
+
+	<!-- <img src="bizhi.jpg" id="img1">
+	<button id="btn">改变属性</button>
+	<button id="btn1">改变class</button>
+
+
+	<div>
+		
+	</div>
+	<button id="slidedown">slidedown</button>
+	<button id="slideup">slideup</button>
+	<button id="fadein">fadein</button>
+	<button id="fadeout">fadeout</button>
+	<button id="animate">animate</button> -->
+
+	<div></div>
+	<button id="btn">animate</button>
+
+</body>
+<!-- 引入jQuery库，否则无法实现jQuery相关操作
+ -->
+ <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+
+	// $(":text").css("background","red")
+
+
+	//jQuery
+	/*min.js压缩版的，一般用于生产环境
+	jquery.js未压缩，一般用于开发环境*/
+
+	// $("body").css("background","red");
+	/*$("")jQuery包装集
+	选择器：ID选择器 类选择器 标签选择器 层级选择器 后代选择器 子选择器*/
+	// $("#tb1 .even").css("background","green");
+	
+	//选择器汇总
+	// $("td:first").css("background","red");
+	// $("td:last").css("background","green");
+	// $("td:even").css("background","blue");
+	// $("td:odd").css("background","yellow");
+
+
+	/*
+		eq(index)  宣中锋特定索引值的元素
+		gt(index) 选中索引值大于index的元素
+		lt(index)选中索引值小于index的元素
+		not(selector) 从特定集合中排除一些元素
+	*/
+
+	// $("td:eq(4)").css("background","purple");
+
+	// $("td:gt(1)").css("background","green");
+
+	// $("td:lt(4)").css("background","white");
+
+	// $("td:not(#td1)").css("background","pink");
+
+
+	//jQuery事件
+	/*
+		jQuery包装集.事件方法(回调函数)
+	*/
+	// $("#btn1").click(function(){
+	// 	alert("按钮被点击");
+	// })
+
+
+	// $(":button").click(function(){
+	// 	alert("被点击")
+	// })
+
+
+	// $("img").mouseover(function(){
+	// 	$(this).css("border","1px solid red");
+	// })
+
+
+	// $("div").mouseover(function(){
+	// 	$(this).css("background-color","blue");
+	// }).mouseout(function(){
+	// 	$(this).css("background-color","gray");
+	// }).click(function(){
+	// 	$(this).css("background-color","red");		// 
+	// })
+
+	// $("div").mouseout(function(){
+	// 	$(this).css("background-color","gray");
+	// })
+
+	// $("div").click(function(){
+	// 	$(this).css("background-color","red");
+	// })
+
+	/*
+		$("html标记")
+		$(选择器).append();向 选中元素内部添加一个新元素
+		$(选择器).remove();将特定元素从页面结构中删除
+	*/
+
+
+	// $("#username").blur(function(){
+	// 	var inputVal=$(this).val();
+	// 	var errorTip=$("<span>用户名不能为空</span>");
+	// 	if(inputVal=="")
+	// 		$(this).parent().append(errorTip);
+	// 	else
+	// 		$("span").remove();
+	// })
+
+
+/*
+	1、向特定元素后面插入新的节点 after()  insertafter()
+	2、向特定元素的前面插入新的节点 before()  insertBefore()
+	3、向特定元素标签内部最后面的位置添加新的节点  append()  appendTo()
+	4、向特定元素标签内部最前面的位置添加新的节点  prepend()   prependTo()
+*/
+
+
+// $("#after").click(function(){
+// 	var $img2="<img src='bizhi.jpg'/>";
+// 	$("#img1").after($img2);
+// })
+	
+
+// 	$("#insertafter").click(function(){
+// 		var $img2=$("<img src='bizhi.jpg'/>");
+// 		$img2.insertAfter($("#img1"));
+// 	})
+
+// 	$("#before").click(function(){
+// 		var $img2=$("<img src='bizhi.jpg'/>");
+// 		$("#img1").before($img2);
+// 	})
+
+
+/*val() 用于设置或者获取表单元素的value值  
+html()用于设置获取双标签元素的标签内部的HTML内容
+css()  同于设置选中元素的样式  css("样式名","样式值")
+css({
+	"样式名":"样式值",
+	"样式名":"样式值"
+})
+*/
+
+	// $("#username").blur(function(){
+	// 	var inputVal=$(this).val();
+	// 	if(inputVal==""){
+	// 		$(".error").html("用户名不能为空");
+	// 		$(".error").css({
+	// 			"color":"red",
+	// 			"font-size":"30px"
+	// 		});
+	// 	}
+	// })
+
+
+	// $("#btn").click(function(){
+	// 	$("#img1").attr("src","shishi.jpeg");
+	// 	$("#img1").attr("title","这是一张图片");
+	// 	alert($("#img1").attr("title"));
+	// 	//移除特定属性
+	// 	$("#img1").removeAttr("title")
+	// })
+
+	// $("#btn1").click(function(){
+	// 	$("#img1").addClass("imgborder");
+	// 	$("#img1").removeClass("imgborder");
+	// 	$("#img1").addClass("bg");
+	// })
+
+
+	// /*改变元素的高度来切换显示和隐藏*/
+	// $("#slideup").click(function(){
+	// 	$("div").slideUp(4000);
+	// })
+
+	// $("#slidedown").click(function(){
+	// 	$("div").slideDown(4000);
+	// })
+
+
+	// /*fadein fadeout改变元素的透明度来切换显示和隐藏*/
+	// $("#fadein").click(function(){
+	// 	$("div").fadeIn(4000);
+	// })
+
+	// $("#fadeout").click(function(){
+	// 	$("div").fadeOut(4000);
+	// })
+
+	// $("#animate").click(function(){
+	// 	$("div").animate({
+	// 		"margin-left":"500px"
+	// 	},3000);
+	// })
+
+
+
+
+	/*
+		选择器：
+		$()
+		$(":eq(index)")索引值为index
+		$("td:even")偶数  $("td:odd")奇数
+		$("td:gl(index)")大于   $("td:lt(index)")小于
+		$(":text")文本
+		
+		事件：
+		mouseover()  mouseout()  blur()  focus()  click()
+
+		方法：
+		append()  appendTo()  after()  insertafter()  before()
+		insertbefore()   prepend()  prependTo()   
+
+		属性：
+		val()  html()  css()  attr()  addClass()   removeClass()
+ 	*/
+
+
+
+ 	$("#btn").click(function(){
+ 		/*动画的同步执行*/
+ 		// $("div").animate({
+ 		// 	"margin-left":"400px",
+ 		// 	"margin-top":"300px",
+ 		// },2000);
+ 		/*动画的顺序执行*/
+ 		$("div").animate({
+ 			"margin-left":"400px"
+ 		},2000);
+ 		$("div").animate({
+ 			"margin-top":"300px"
+ 		},2000);
+ 		$("div").animate({
+ 			"margin-top":"0px"
+ 		},2000);
+ 		$("div").animate({
+ 			"margin-left":"0px"
+ 		},2000);
+ 	})
+</script>
+</html>

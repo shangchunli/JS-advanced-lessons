@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//Date是一个构造函数
+	var date1=new Date();
+	var year=date1.getFullYear();
+	var moth=date1.getMonth();
+	var date2=new Date(year,moth);
+	console.log(date2);//没有设置的默认
+
+
+	//指明时间日期的字符串
+	var date3=new Date("2019-05-05");
+	console.log(date3);
+
+	//指明一个毫秒为单位的数字类型
+	var date4=new Date(Date.now());
+	console.log(date4);//具体到秒
+
+	/*
+	本地时间：当前所处时区的标准时间
+	世界标准时：UTC(格林威治时间)  GMT
+	*/
+
+	//parse
+	
+
+	var seconds=Date.parse("2019-02-03");
+	console.log(seconds);
+	var date1=new Date(seconds);
+	console.log(date1);
+
+	var date2=new Date();
+	var seconds2=Date.parse(date2);
+	console.log(seconds>seconds2);
+
+
+	//练习
+	console.log(Date.parse("2010-01-01 11:12:23.111"));
+	console.log(new Date("2010-01-01 11:12:23.111"));
+	console.log(new Date().toISOString());
+
+	
+</script>
+</html>

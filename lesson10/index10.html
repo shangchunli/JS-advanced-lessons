@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	var a=1;
+	function fn1(){
+		console.log(a);//1
+		var b=2;
+		var c=3;
+		function fn2(){
+			var c=30;
+			var d=4;
+			console.log(c);//30
+		}
+		fn(2);
+		console.log(c);//3
+		console.log(d);//报错，未声明变量
+	}
+	fn2();//会报错，fn2在fn1函数里面
+	fn1();
+
+
+	//函数和变量在完成定义之后，作用域就都是确定的，和调用形式无关
+	//new Function不遵从静态词法作用域
+	var username='jack';
+	function foo(){
+		username='bill';
+		console.log(username);//bill
+	}
+	function bar(){
+		var username='mike';
+		foo();
+		console.log(username);//mike
+	}
+	bar();
+
+	//ES5没有块级作用域 只有函数的局部作用域
+	if(true){
+		var a=2;
+	}
+	console.log(a);
+	function fn3(){
+
+	}
+	//解释器执行
+	var a;
+	if(true){
+		a=2;
+	}
+	console.log(a);
+
+	//ES6有块级作用域
+	if(true){
+		let b=3;
+	}
+	console.log(b);//b未定义
+
+
+	//没有块级作用域，造成变量污染
+	var userId=5;
+	document.onclick=function(){
+		console.log(userId);//30
+		userId=10;
+	};
+
+	// if(true){
+	// 	var userId=30;
+	// }
+	//解决办法
+	(function(){
+		if(true){
+			var userId=30;
+		}
+	})() //此时上面console.log(userId)结果为5
+
+
+
+	//上下文，当某行代码执行过程中，它的上下文环境包含了当前作用于所包含的变量、函数调用栈、this的指向
+	var x=5;
+	var y=6;
+	function foo(){
+		var a=1;
+		var b=2;
+		function bar(){
+			var c=3;
+			var d=4;
+		}
+		bar();
+	}
+	foo();
+
+	//上下文：每一行代码的上下文
+
+	//作用域越大，执行效率越低
+	//匿名函数就比较好
+	var div1=document.getElementById("div1");
+	var username="zhangsan";
+	function foo(){
+		div1.onclick=function(){
+			this
+		}
+	}
+
+</script>
+</body>
+</html>

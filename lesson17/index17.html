@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+	var superObj={
+		x:1,
+		y:2
+	};
+	var subObj_First=Object.create(superObj);
+	var subObj_Second=Object.create(superObj);
+	subObj_First.__proto__.x=5;//通过__proto__找到原型链改变原型链上的x的值
+	subObj_First.x=3;//重新创建了一个x，和原型链的无冲突
+	console.log(subObj_Second.x);//5
+
+
+
+
+	//构造函数存在的问题，变量共享问题
+	function Person(name){
+		this.name=name;
+	}
+	Person.prototype.age=22;
+	Person.prototype.showName=function(){
+		console.log(this.name);
+	}
+	function Student(id){
+		this.id=id;
+	}
+	/*
+	Person name属性Mike Person.__proto__.age  Person.__proto__.showName
+	*/
+	Student.prototype=new Person("Mike");//student继承Person的属性
+	var s1=new Student(2017001);
+	var s2=new Student(2017002);
+	console.log(s1.id,s2.id);
+	/*
+	s1自身上面没有age，s1.__proto__=student.prototype
+	student.prototype=person;person对象上没有age，此时的person是Mike形成的对象
+	s1.__proto__.__proto__=person.__proto__
+	person.__proto__=Person.prototype;
+	*/
+	console.log(s1.age,s2.age);
+	console.log(s1.name,s2.name);//name值一样
+
+
+
+	//模拟类
+	function Person(name,age){
+		this.name=name;
+		this.age=age;
+	}
+	Person.prototype.showName=function(){
+		console.log(this.name);
+	}
+	function Student(name,age,id){
+		/*
+		Person.call 切换了Person函数内部this的指向
+		*/
+		Person.call(this,name,age);//调用Person方法，传入this,后面是现在this指向的Person的属性值，指明this，使Person方法的主体指向this
+		this.id=id;
+	}
+	Student.prototype.__proto__=Person.prototype;//原型链上多加了一级
+	var s1=new Student("xxx",22,2017001);
+	var s2=new Student("www",23,2017002);
+	console.log(s1);
+	s1.showName();
+	console.log(s1.__proto__.__proto__==Person.prototype);
+
+
+
+
+	function Person(name,age){
+		this.name=name;
+		this.age=age;
+	}
+	Person.prototype.showName=function(){
+		console.log(this.name);
+	}
+	function Student(name,age,id){
+		Person.call(this,name,age);
+		this.id=id;
+	}
+	Student.prototype=Object.create(Person.prototype);
+	console.log(Student.prototype);
+	Student.prototype.constructor=Student;//被覆盖后重新指定constructor
+	console.log(Student.prototype);
+	var s1=new Student("xxx",22,2017001);
+	console.log(Function.prototype==Person.__proto__);
+
+
+	//JS继承补充部分
+	//Object.create是静态方法，直接定义在构造函数上面
+
+	function baseClass(){
+
+	}
+	baseClass.fn1=function(){
+		console.log("静态方法");
+	}
+	baseClass.fn1();
+
+	baseClass.prototype.fn2=function(){
+		console.log("原型方法");
+	}
+
+	var base=new baseClass();
+	// base.fn1();此时会报错，
+	console.log(base.__proto__==baseClass.prototype);//去prototype上去找函数
+	base.fn2();
+
+
+	//constructor 存在于prototype上的一个属性，指向构造函数
+	function Person(username,age){
+		this.username=username;
+		this.age=age;
+	}
+	Person.prototype.constructor==Person;
+
+	var person=new Person("lsi",17);
+	person.constructor==Person;
+
+	var obj=new Object();
+	obj.constructor==Object;
+
+</script>
+</html>

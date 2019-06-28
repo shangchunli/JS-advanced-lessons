@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script>
+	//Symbol
+	/*生成唯一值*/
+	let s1=Symbol("s1");
+	let s2=Symbol("s2");
+	let s3=Symbol("s3");
+	console.log(s1==s3);//false
+
+	/*Symbol 作为对象的属性名，永远不会重复
+	对象[Symbol]
+	{
+		[Symbol]:属性值
+	}
+	*/
+	let obj={};
+	obj[s1]="hello";
+	//obj.s1="world";//这是把s1作为属性名字，不可以
+	let obj1={
+		[s1]:"world";
+	}
+	console.log(obj[s1]);
+
+
+
+	/*Symbol.for()首先查看是否存在该描述信息的Symbol变量，存在的话直接接收，不存在的话会新建一个Symbol*/	
+	console.log(Symbol.for("foo")==Symbol.for("foo"));//true
+
+
+	//Set
+	/*去掉数组重复值*/
+	let s1=new Set([1,2,3,4,2,1,6,4]);
+	for(let i of s1){
+		console.log(i);
+	}
+
+
+	//Map属性名是任意的数据类型
+	let m1=new Map([
+		["username","zhangsan"],
+		["age",320],
+		["sex","man"]
+	]);
+	console.log(m1.size);
+	for(let i of m1){
+		console.log(i);
+	}
+	m1.set("weight",50);
+	m1.get("username");
+	m1.delete("sex");
+	//获得属性名数组
+	console.log(m1.keys());
+	for(let j of m1.keys()){
+		console.log(j);
+	}
+
+
+</script>
+</html>

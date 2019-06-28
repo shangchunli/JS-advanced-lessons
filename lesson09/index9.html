@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	//变量提升
+	console.log(a);//undefined
+	var a=2;
+	console.log(a);//2
+	//解析器角度
+	var a;
+	console.log(a);
+	a=2;
+	console.log(a);
+
+	//变量提升，在函数作用域或者全局
+
+
+	console.log(a);//undefined
+	if(true){
+		var a=1;
+	}
+	console.log(a);//1
+
+
+	console.log(a);//undefined
+	if(false){
+		var a=1;
+	}
+	console.log(a);//undefined
+
+	//函数重复声明会有覆盖
+	foo();//f_2
+	function foo(){
+		console.log(f_1);
+	}
+	function foo(){
+		console.log(f_2);
+	}
+	//解释器执行的过程
+	function foo(){
+		console.log(f_1);
+	}
+	function foo(){
+		console.log(f_2);
+	}
+	foo();//f_2
+
+
+	//该种情况时，仅会针对变量进行定义的提升
+	console.log(foo);//undefined
+	var foo=function  (){
+		// body...
+		console.log("hello");
+	}
+
+	AA();//A_1
+	function AA(){
+		console.log(A_1);
+	}
+	var AA= function(){
+		console.log(A_2);
+	}
+	AA();//A_2
+	//解释执行过程,变量提升放在函数的下面
+	function AA(){
+		console.log(A_1);
+	}
+	var AA;
+	AA();//A_1
+	AA= function(){
+		console.log(A_2);
+	}
+	AA();
+</script>
+</body>
+</html>

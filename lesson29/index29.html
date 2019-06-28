@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script>
+	//遍历
+	let str="abcde";
+	for(let i of str){
+		console.log(i);
+	}
+	str.repeat(4);
+
+	//正则表达式
+	let reg1=/xyz/gi;
+	let reg2=new RegExp("xyz",'gi');
+	let reg3=new RegExp(/xyz/gi);
+	let reg4=new RegExp(/xyz/gi,'i');
+	//正则表达式对象.flags获取到正则表达式修饰符
+	console.log(reg1.flags);
+
+
+	let str="aaa_aa_a";
+	let reg5=/a+/g;
+	let reg6=/a+/y;
+	console.log(reg5.exec(str));//aaa
+	console.log(reg5.exec(str));//aa
+	console.log(reg6.exec(str));//aaa
+	//上一次匹配结果的索引位置
+	console.log(reg6.lastIndex);
+	console.log(reg6.exec(str));//null
+	//可以判断正则对象是否设置了sticky属性
+	console.log(reg6.sticky);
+
+
+
+	//对Array的扩展
+	//类数组结构
+	/*Array.from将类数组结构转化为数组*/
+	console.log(Array.from("abcdef"));//['a','b','c','d','d','f'] 
+
+	function fn1(){
+		//console.log(arguments);//[1,2,3]
+		console.log(Array.from(arguments));//[1,2,3]
+	}
+	fn1(1,2,3);
+
+	/*Array.of将单个的元素转化为数组*/
+	console.log(Array.of(1,2,3));//[1,2,3]
+
+	
+	//Array.prototype.copyWithin()
+	/*
+		复制数组里面的元素到特定位置上
+		arr1.copyWithin(target,start,end) 
+		target:复制元素的目标位置
+		start:复制元素的起始位置
+		end：复制元素的结束位置
+	*/
+	var arr1=[1,2,3,4,5];
+	arr1.copyWithin(0,4,5);//[5,2,3,4,5]
+	arr1.copyWithin(0,3,5);//[4,5,3,4,5]
+
+	/*
+		Array.prototype.find  遍历数组中的元素，验证是否满足回调函数中的验证条件（回调函数的返回值）
+		返回满足条件的第一个数组元素
+		Array.prototypr.findIndex 同上，但是返回值是索引
+	*/
+	let arr2=[10,15,20,30,40];
+	let el=arr2.find(function(element){
+		return element>19;
+	})
+	console.log(el);//20
+
+	let elIndex=arr2.findIndex(function(element){
+		return element>29;
+	})
+	console.log(elIndex);//3
+
+
+	/*
+		fill(value,start,end);向数组特定的起始位置和结束位置填充value
+		keys()获取键的值   values() 获取数组具体值
+	*/
+
+
+	//对Object的扩展
+	/*
+		ES6里面对象的结构进行了简化，属性可以写成变量的形式，函数省略了function，函数名(){}
+	*/
+	let name="lily";
+	let obj={
+		username,
+		fn1(){
+			console.log(this.username);
+		}
+	}
+
+
+	let bar="foo";
+	let obj1={
+		[bar]:"male"
+	}
+	console.log(obj1);//{foo:"male"}
+
+
+	//assign 重点
+	let obj2={uname:"zhangsan"};
+	let obj3={age:20};
+	console.log(Object.assign(obj2,obj3));//{uname:"zhangsan",age:20}
+
+	console.log(obj2.keys());
+	console.log(obj2.values());
+	console.log(obj2.entries());
+
+</script>
+</html>

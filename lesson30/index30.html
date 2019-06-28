@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script>
+	var obj={
+		objName:"objn",
+		showName:function(){
+			var intervalId=setTimeout(function(){
+				console.log(this);//this指向window
+				console.log(this.objName);//undefined
+			},2000)
+		}
+	}
+	obj.showName();
+
+
+	//优点：可以避免this指向错误 掌握写法作用优点（重点)
+	var obj={
+		objName:"objn",
+		showName:function(){
+			var intervalId=setTimeout(()=>{
+				console.log(this);//this指向obj对象
+				console.log(this.objName);//objn
+			},2000)
+		}
+	}
+	obj.showName();
+
+
+	//ES6对函数参数默认值的扩展
+	/*
+		1、如果有参数使用了默认值，则函数体内部不能出现和该参数名称一样的变量
+		2、具有默认值的参数，必须写到没有默认值的参数的后面
+	*/
+	function fn1(x,y=2,z=3){
+		return x+y+z;
+	}
+	console.log(fn1(1,0,0));//1
+	console,log(fn1(1));//6
+	console,log(fn1(1,4));//8
+
+	//rest剩余操作符
+	/*添加了剩余操作符的参数，会得到一个数组接收剩余的实参，写在其他参数的后面*/
+	function fn2(x,...rest){
+		console.log(x);//1
+		console.log(rest);//[2,3,4,5]
+	}
+	fn2(1,2,3,4,5);
+
+
+	//spread扩展操作符
+	/*rest的逆过程，将一个集合打散作为单个元素*/
+	function fn3(x){
+		console.log(x);//1
+		console.log(arguments);//[1,2,3]
+	}
+	fn3(1,...[2,3]);//相当于fn3(1,2,3);
+</script>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	//(function 函数名(参数){
+		//函数体
+	//}(实参));
+	(function max(x,y){
+		return x>y?x:y;
+	}(2,3));
+
+	(function min(x,y){
+		return x>y?y:x;
+	})(2,3);
+
+
+	var userId=2;
+	document.onclick=function(){
+		alert(userId);
+	}
+
+	(function(){
+		if(true){
+			var userId=20;
+		}
+	})();
+
+	//变量共享问题
+	function foo(){
+		var arr1=[];
+		for(var i=0;i<10;i++){
+			arr1[i]=function(){
+				return i;
+			}
+		}
+		return arr1;
+	}
+	var arr2=foo();
+	console.log(arr2[0]());//10 i循环结束后才返回函数值。
+
+	//解决方法一
+	function foo1(){
+		var arr3=[];
+		for(var i=0;i<10;i++){
+			arr3[i]=(function(j){
+				return j;
+			})(i);
+		}
+		return arr3;
+	}
+	var arr4=foo1();
+	arr4[3];//3
+
+	//方法二
+	function foo1(){
+		var arr3=[];
+		for(var i=0;i<10;i++){
+			//形成10个作用域，作用域内的j值各不相同，并且不共享
+			(function(j){
+				arr3[j]=function(){
+					return j;
+				}
+			}(i));
+		}
+		return arr3;
+	}
+	var arr4=foo1();
+	arr4[3];//3
+
+	//延迟
+	//第一个延迟执行是在0秒时，比for循环晚
+	for(var i=0;i<3;i++){
+		setTimeout(function(){
+			console.log(new Date(),i);//3 3 3
+		},i*1000);
+	}
+
+
+	for(var i=0;i<3;i++){
+		(function(j){
+			setTimeout(function(){
+				console.log(new Date(),j);//0 1 2
+			},j*1000);
+		})(i);		
+	}
+
+
+
+	//闭包  通过返回函数（fn1）内部定义的函数（fn2）来访问fn1内部的局部变量（x）
+	function fn1(){
+		var x=1;
+	}
+	console.log(x);//报错
+
+	function fn1(){
+		var x=1;
+		function fn2(){
+			return ++x;
+		}
+		return fn2();
+	}
+	fn1();//2
+
+
+	function fn1(){
+		var x=1;
+		function fn2(){
+			return ++x;
+		}
+		return fn2;
+	}
+	var fn3=fn1();
+	fn3();
+	console.log(fn3());//2
+	console.log(fn3());//3
+	console.log(fn3());//4
+
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script>
+	/*promise 将异步的代码写成同步的方式执行*/
+
+	setTimeout(function(){
+		console.log("时间到");
+	},3000);
+	console.log("同步代码1");//和下面语句先执行，三秒后执行上面语句
+	console.log("同步代码2");
+
+	/*
+		new Promise(fucntion(resolve,reject){
+			异步操作
+			resolve();异步操作成功时调用
+			reject();异步操作失败时的调用
+		}).then(function(){
+			其实就是resolve的函数的定义
+		},function(){
+			其实是reject函数的定义
+		})
+
+	*/
+	new Promise(function(resolve,reject){
+		setTimeout(function(){
+			console.log("时间到");
+			/*resolve是异步操作成功时的回调函数*/
+			resolve("hello");
+		},3000);
+	}).then(function(val){
+		console.log(val);
+	},function(){
+
+	}).catch(function(){
+		//捕获里面发生的异常
+	}).finally(function(){
+		console.log("无论如何都会执行，不论成功与否")
+	})
+</script>
+</html>
